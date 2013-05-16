@@ -31,6 +31,7 @@
 		
 		private function init(e:Event){
 			removeEventListener(Event.ADDED_TO_STAGE, init); //удаляем слушатель событий
+			MovieClip(parent).setChildIndex(MovieClip(parent).soundControl, MovieClip(parent).soundControl.parent.numChildren-1); //Помещаем значок звука на верх
 			//далее выполняй
 			menuBuilder();
 			animateLabel();
@@ -110,12 +111,17 @@
 			else if(e.keyCode == 13){ //Энтер
 				menuAction();
 			}
-			else if(e.keyCode == 27 && newGameSelected){ //Кнопка Эскейп, если ранее был выбран пункт меню "New game"
-				newGameSelected = false; //Сбрасываем флаг
-				menuItemsNumber = texts.length; //И ставим обратно переменную общего кол-ва кнопок
-				for(var i:int = 0; i < menuItemsNumber; i++){
-					menuItems[i].menuLabel.txt.text = texts[i]; //Сбрасываем текст каждой кнопки на начальный
-					menuItems[i].alpha = 1; //Снова отображаем все кнопки
+			else if(e.keyCode == 27){ //Кнопка Эскейп
+				if (newGameSelected){ //если ранее был выбран пункт меню "New game"
+					newGameSelected = false; //Сбрасываем флаг
+					menuItemsNumber = texts.length; //И ставим обратно переменную общего кол-ва кнопок
+					for(var i:int = 0; i < menuItemsNumber; i++){
+						menuItems[i].menuLabel.txt.text = texts[i]; //Сбрасываем текст каждой кнопки на начальный
+						menuItems[i].alpha = 1; //Снова отображаем все кнопки
+					}
+				}
+				else{ //а если не выбран пункт меню "New game", то просто:
+					fscommand("quit"); //Выход из игры :) (в дебаг-плеере программы Adobe Flash не работает!)
 				}
 			}
 		}

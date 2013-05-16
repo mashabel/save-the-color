@@ -18,6 +18,7 @@
 			btn_skip.buttonMode = true; //Делаем из мувиклипа с текстом кнопку, чтоб указатель мыши был рукой
 			btn_skip.addEventListener(MouseEvent.CLICK, skipIntro); //Слушатель события клика мыши по одной из кнопок. Если игрок кликнул - перескакиваем на следующий кадр
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keydownHandler); //Слушатель событий нажатия кнопок (для пропуска интро с помощью эскейпа
+			MovieClip(parent).setChildIndex(MovieClip(parent).soundControl, MovieClip(parent).soundControl.parent.numChildren-1); //Помещаем значок звука на самый верх
 		}
 		
 		private function skipIntro(e:MouseEvent){

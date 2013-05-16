@@ -5,23 +5,23 @@
 	public class Player extends MovieClip {
 		private var health:int;
 		
-		public function Player(health) {
+		public function Player(health) { //Конструктор игрока
 			trace('player created!');
-			this.health = health;
+			this.health = health; //Даём ему здоровье
 		}
 		
 		public function getHealth():int{
-			return health;
+			return health; //Возаращаем здоровье
 		}
 		
 		public function hit():Boolean{
-			health--;
+			health--; //Отнимаем здоровье
 			if (health < 1){
 				trace('player is dying!')
-				return true;
+				return true; //Если здоровья не осталось - игрок умирает. Возвраюаем true
 			}
 			else{
-				return false;
+				return false; //А если осталось - то повезло, не умер. Возвращаем false
 			}
 		}
 	}
